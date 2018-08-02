@@ -1,5 +1,6 @@
 class MicropostsController < ApplicationController
   before_action :set_micropost, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
 
   # GET /microposts
   # GET /microposts.json
@@ -25,7 +26,7 @@ class MicropostsController < ApplicationController
   # POST /microposts.json
   def create
     @micropost = Micropost.new(micropost_params)
-
+    @micropost.user_id = current_user.id
     respond_to do |format|
       if @micropost.save
         format.html { redirect_to @micropost, notice: 'Micropost was successfully created.' }
@@ -41,7 +42,7 @@ class MicropostsController < ApplicationController
   # PATCH/PUT /microposts/1.json
   def update
     respond_to do |format|
-      if @micropost.update(micropost_params)
+       if @micropost.user_id == current_user.id && @micropost.update(micropost_params)
         format.html { redirect_to @micropost, notice: 'Micropost was successfully updated.' }
         format.json { render :show, status: :ok, location: @micropost }
       else
@@ -54,7 +55,9 @@ class MicropostsController < ApplicationController
   # DELETE /microposts/1
   # DELETE /microposts/1.json
   def destroy
-    @micropost.destroy
+    if @micropost.user_id == current_user.id
+      @micropost.destroy
+    end
     respond_to do |format|
       format.html { redirect_to microposts_url, notice: 'Micropost was successfully destroyed.' }
       format.json { head :no_content }
@@ -69,6 +72,6 @@ class MicropostsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def micropost_params
-      params.require(:micropost).permit(:content, :user_id)
+      params.require(:micropost).permit(:content)
     end
 end
