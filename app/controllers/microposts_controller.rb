@@ -5,7 +5,12 @@ class MicropostsController < ApplicationController
   # GET /microposts
   # GET /microposts.json
   def index
-    @microposts = Micropost.all
+    if params[:category].blank?
+      @microposts = Micropost.all
+    else
+      @category_id = Category.find_by(name: params[:category]).id
+      @microposts = Micropost.where(:category_id => @category_id)
+    end
   end
 
   # GET /microposts/1
@@ -16,10 +21,28 @@ class MicropostsController < ApplicationController
   # GET /microposts/new
   def new
     @micropost = Micropost.new
+    @categories = Category.all.map{|c| [ c.name, c.id ] }
   end
 
   # GET /microposts/1/edit
   def edit
+    @micropost = Micropost.find(params[:id])
+    @categories = Category.all.map{|c| [ c.name, c.id ] }
+  end
+  # PATCH/PUT /microposts/1
+  # PATCH/PUT /microposts/1.json
+  def update
+    @micropost = Micropost.find(params[:id])
+    @micropost.category_id = params[:category_id]
+    respond_to do |format|
+       if @micropost.user_id == current_user.id && @micropost.update(micropost_params)
+        format.html { redirect_to @micropost, notice: 'Micropost was successfully updated.' }
+        format.json { render :show, status: :ok, location: @micropost }
+      else
+        format.html { render :edit }
+        format.json { render json: @micropost.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   # POST /microposts
@@ -36,20 +59,7 @@ class MicropostsController < ApplicationController
         format.json { render json: @micropost.errors, status: :unprocessable_entity }
       end
     end
-  end
 
-  # PATCH/PUT /microposts/1
-  # PATCH/PUT /microposts/1.json
-  def update
-    respond_to do |format|
-       if @micropost.user_id == current_user.id && @micropost.update(micropost_params)
-        format.html { redirect_to @micropost, notice: 'Micropost was successfully updated.' }
-        format.json { render :show, status: :ok, location: @micropost }
-      else
-        format.html { render :edit }
-        format.json { render json: @micropost.errors, status: :unprocessable_entity }
-      end
-    end
   end
 
   # DELETE /microposts/1
@@ -72,6 +82,6 @@ class MicropostsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def micropost_params
-      params.require(:micropost).permit(:content, :image)
+      params.require(:micropost).permit(:content, :image, :category_id)
     end
-end
+  end

@@ -14,11 +14,16 @@
   <div class="field">
     <%= form.label :content %>
     <%= form.text_area :content, id: :micropost_content %>
-    
   </div>
+  
   <div class="field">
-  <%= form.label :image %>
-  <%= form.file_field :image %>
+    <%= form.label :image %>
+    <%= form.file_field :image %>
+  </div>
+
+  <div class="field">
+    <%= form.label :category_id %><br />
+    <%= form.collection_select :category_id, Category.all, :id, :name %>
   </div>
 
   <div class="actions">
