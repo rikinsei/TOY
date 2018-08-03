@@ -1,3 +1,4 @@
-class Category < ActiveRecord::Base
-    has_many :miscroposts
-  end
+class Category < ApplicationRecord
+    has_many :category_microposts
+    has_many :microposts, through: :category_microposts
+end

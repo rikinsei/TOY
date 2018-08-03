@@ -12,18 +12,20 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :content %>
-    <%= form.text_area :content, id: :micropost_content %>
+    <%= hidden_field_tag "micropost[category_ids][]", nil%>
+    <%  Category.all.each do |cat|%>
+      <%= check_box_tag "micropost[category_ids][]", cat.id, form.object.categories.include?(cat) %>
+      <%= cat.name %> 
+    <% end %>
   </div>
+
+  <div class="field">
+    <%= form.label :content %>
+    <%= form.text_area :content %>
   
   <div class="field">
     <%= form.label :image %>
     <%= form.file_field :image %>
-  </div>
-
-  <div class="field">
-    <%= form.label :category_id %><br />
-    <%= form.collection_select :category_id, Category.all, :id, :name %>
   </div>
 
   <div class="actions">

@@ -5,17 +5,16 @@ class MicropostsController < ApplicationController
   # GET /microposts
   # GET /microposts.json
   def index
-    if params[:category].blank?
-      @microposts = Micropost.all
-    else
-      @category_id = Category.find_by(name: params[:category]).id
-      @microposts = Micropost.where(:category_id => @category_id)
-    end
+    @users = User.all
+    @microposts = Micropost.all
+    @categories = Category.all
   end
 
   # GET /microposts/1
   # GET /microposts/1.json
   def show
+    @microposts = Micropost.all
+    @users = User.all
   end
 
   # GET /microposts/new
@@ -82,6 +81,6 @@ class MicropostsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def micropost_params
-      params.require(:micropost).permit(:content, :image, :category_id)
+      params.require(:micropost).permit(:content, :image, category_ids: [])
     end
   end
