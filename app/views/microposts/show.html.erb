@@ -25,9 +25,8 @@
     <strong>User:</strong>
     <%=@micropost.user.name %>
 </p>
-  
 <p><%= @micropost.comments.count %> Comments</p>
-  <%= render @micropost.comments %>
+  <%= render partial: 'comments/comment', collection: @micropost.comments %>
 <p>leave a reply</p>
   <%= render 'comments/form' %>
   

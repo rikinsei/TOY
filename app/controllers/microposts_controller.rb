@@ -16,7 +16,6 @@ class MicropostsController < ApplicationController
     @microposts = Micropost.all
     @users = User.all
     @comments = @micropost.comments.all
-    @comment  = @micropost.comments.build if current_user
   end
 
   # GET /microposts/new
