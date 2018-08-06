@@ -15,6 +15,8 @@ class MicropostsController < ApplicationController
   def show
     @microposts = Micropost.all
     @users = User.all
+    @comments = @micropost.comments.all
+    @comment  = @micropost.comments.build if current_user
   end
 
   # GET /microposts/new
@@ -73,6 +75,8 @@ class MicropostsController < ApplicationController
     end
   end
 
+
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_micropost
@@ -83,4 +87,11 @@ class MicropostsController < ApplicationController
     def micropost_params
       params.require(:micropost).permit(:content, :image, category_ids: [])
     end
+
+    def comment_params
+      params.require(:comment).permit(
+        :name, :body
+      )
+    end
+  
   end
