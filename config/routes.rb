@@ -1,13 +1,14 @@
+# frozen_string_literal: true
+
 Rails.application.routes.draw do
-  
   resources :categories
-   devise_for :users, controllers: { registrations: 'users/registrations' }
+  devise_for :users, controllers: { registrations: 'users/registrations' }
   resources :microposts do
-    resources :comments
+    resources :comments, only: %i[create update destroy]
   end
   root 'microposts#index'
   resources :users
   root 'users#index'
-  
-# http://0.0.0.0:3000/microposts/12/comments
+  get 'comments/index'
+  # http://0.0.0.0:3000/microposts/12/comments
 end

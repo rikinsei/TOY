@@ -8,7 +8,8 @@
     <%= image_tag @micropost.image %>
   </p>
 <% end %>
-<p>
+
+</p>
   <strong>Category:</strong><p>
   <%= @micropost.categories.count %> Categories</p>
   <% @micropost.categories.pluck(:name).each do |cat| %>
@@ -23,15 +24,23 @@
 
 <p>
     <strong>User:</strong>
-    <%=@micropost.user.name %>
+    <%=@micropost.user_name %>
 </p>
 <p><%= @micropost.comments.count %> Comments</p>
   <%= render partial: 'comments/comment', collection: @micropost.comments %>
 <p>leave a reply</p>
-  <%= render 'comments/form' %>
-  
-<%= link_to 'Edit', edit_micropost_path(@micropost) %> |
+
+<%= render partial: 'comments/form', locals: { micropost: @micropost } %>
+<%= link_to 'Edit', edit_micropost_path(@micropost) %>
 <%= link_to 'Back', microposts_path %>
 
 
-  
+
+
+
+
+
+
+
+
+

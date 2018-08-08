@@ -1,3 +1,4 @@
+# Comment
 class Comment < ApplicationRecord
- belongs_to :micropost
+  belongs_to :micropost
 end
