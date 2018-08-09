@@ -12,7 +12,7 @@
     </tr>
   </thead>
   <tbody>
-   <% @microposts.each do |micropost| %>
+   <% @microposts.order(user_id: :asc).each do |micropost| %>
      <tr>
        <td><% micropost.categories.pluck(:name).each do |cat| %>
           <li><%=cat %></li>

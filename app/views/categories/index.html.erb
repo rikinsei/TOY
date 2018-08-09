@@ -13,7 +13,7 @@
   </thead>
 
   <tbody>
-    <% @categories.each do |category| %>
+    <% @categories.order(name: :asc).each do |category| %>
       <tr>
         <td><%= category.name %></td>
         <td><%= category.microposts.size %></td>
