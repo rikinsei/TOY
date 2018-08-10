@@ -10,6 +10,10 @@ gem 'rails', '~> 5.2.0'
 # Use sqlite3 as the database for Active Record
 # gem 'sqlite3'
 gem 'mysql2'
+# gem 'jquery-rails'
+gem 'jquery-rails'
+gem 'jquery-ui-rails'
+gem 'counter_culture', '~> 1.8'
 # Use Puma as the app server
 gem 'puma', '~> 3.7'
 # Use SCSS for stylesheets
@@ -44,6 +48,9 @@ gem 'jquery-ui-rails'
 
 group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
+  gem 'pry-rails'
+  gem 'pry-byebug'
+
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '~> 2.13'
   gem 'selenium-webdriver'

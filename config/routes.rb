@@ -3,8 +3,8 @@
 Rails.application.routes.draw do
   resources :categories
   devise_for :users, controllers: { registrations: 'users/registrations' }
-  resources :microposts do
-    resources :comments, only: %i[create update destroy]
+  resources :microposts  do
+    resources :comments
   end
   root 'microposts#index'
   resources :users
