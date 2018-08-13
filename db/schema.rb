@@ -53,6 +53,7 @@ ActiveRecord::Schema.define(version: 2018_08_09_121452) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "micropost_id", null: false
+    t.integer "user_id"
     t.index ["micropost_id"], name: "fk_rails_a42aadf913"
   end
 
@@ -61,6 +62,7 @@ ActiveRecord::Schema.define(version: 2018_08_09_121452) do
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "category_id"
     t.integer "comments_count", default: 0, null: false
     t.index ["user_id"], name: "fk_rails_558c81314b"
   end

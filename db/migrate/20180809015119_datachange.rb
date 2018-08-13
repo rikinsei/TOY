@@ -18,5 +18,6 @@ class Datachange < ActiveRecord::Migration[5.2]
    change_column_null :comments, :comment, false
    change_column :comments, :micropost_id, :bigint, limit: 20, null: false
    add_foreign_key :comments, :microposts
+   add_foreign_key :comments, :users
   end
 end
