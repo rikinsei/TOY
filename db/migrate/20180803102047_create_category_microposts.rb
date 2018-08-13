@@ -1,3 +1,4 @@
+# createCategoryMicroposts
 class CreateCategoryMicroposts < ActiveRecord::Migration[5.2]
   def change
     create_table :category_microposts do |t|

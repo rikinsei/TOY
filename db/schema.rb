@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_06_090413) do
+ActiveRecord::Schema.define(version: 2018_08_09_121452) do
 
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -34,47 +34,41 @@ ActiveRecord::Schema.define(version: 2018_08_06_090413) do
   end
 
   create_table "categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "name"
+    t.string "name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "microposts_count", default: 0
+    t.integer "microposts_count", default: 0, null: false
   end
 
   create_table "category_microposts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.integer "category_id"
-    t.integer "micropost_id"
+    t.bigint "category_id", null: false
+    t.bigint "micropost_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "comments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "name"
-    t.text "comment"
+    t.string "name", null: false
+    t.text "comment", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "micropost_id"
+    t.bigint "micropost_id", null: false
+    t.integer "user_id"
+    t.index ["micropost_id"], name: "fk_rails_a42aadf913"
   end
 
   create_table "microposts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.text "content"
-    t.integer "user_id"
+    t.text "content", null: false
+    t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "category_id"
     t.integer "comments_count", default: 0, null: false
-  end
-
-  create_table "posts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "title"
-    t.text "content"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer "category_id"
-    t.index ["category_id"], name: "index_posts_on_category_id"
+    t.index ["user_id"], name: "fk_rails_558c81314b"
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "name"
+    t.string "name", null: false
     t.string "email"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -90,8 +84,11 @@ ActiveRecord::Schema.define(version: 2018_08_06_090413) do
     t.string "provider"
     t.string "uid"
     t.string "username"
+    t.boolean "admin", default: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "comments", "microposts"
+  add_foreign_key "microposts", "users"
 end
