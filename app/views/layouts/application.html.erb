@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>ToyApp</title>
+        <title><%= yield(:title) %> | Ruby on Rails Tutorial Sample App</title>
         <%= csrf_meta_tags %>
 
         <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -10,14 +10,24 @@
     </head>
 
  
-    <body>
-        <%= yield %>
-        <ul>
-            <% if user_signed_in? %>
+
+ <body>
+    <header class="navbar navbar-fixed-top navbar-inverse"> <div class="container">
+    <%= link_to "Toy app", root_path, id: "logo" %> <nav>
+    <ul class="nav navbar-nav navbar-right"> 
+        <% if user_signed_in? %>
               <li><%= link_to('Logout', destroy_user_session_path, method: :delete) %></li>
             <% else %>
                 <li><%= link_to('Login', new_user_session_path)%></li>
-            <% end %>
-        </ul>
-    </body>
-</html>
+        <% end %>
+        
+    </div>
+     </header>
+    <div class="container">
+        <%= yield %> 
+    </div>
+  </body>
+    </html>
+
+
+  

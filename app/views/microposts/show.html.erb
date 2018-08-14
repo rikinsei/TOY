@@ -36,8 +36,9 @@
 <ul id="comments"></ul>
 <%= render partial: 'comments/form', locals: { micropost: @micropost } %>
 </p>
-
-  <%= link_to 'Edit', edit_micropost_path(@micropost) %>
+  <% if user_signed_in? && @micropost.user_id == current_user.id %>
+    <%= link_to 'Edit', edit_micropost_path(@micropost) %>
+  <% end %>
   <%= link_to 'Back', microposts_path %>
 </div>
 
