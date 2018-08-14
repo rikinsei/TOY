@@ -1,6 +1,6 @@
 # Micropost
 class Micropost < ApplicationRecord
-  belongs_to :user
+  belongs_to :user, foreign_key:'user_id'
   delegate :name, to: :user, prefix: true
   has_many :category_microposts, dependent: :destroy
   has_many :categories, through: :category_microposts, dependent: :destroy

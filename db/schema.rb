@@ -53,8 +53,10 @@ ActiveRecord::Schema.define(version: 2018_08_09_121452) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "micropost_id", null: false
-    t.integer "user_id"
+    t.bigint "user_id"
+    t.index ["id"], name: "idx_id"
     t.index ["micropost_id"], name: "fk_rails_a42aadf913"
+    t.index ["user_id"], name: "fk_id"
   end
 
   create_table "microposts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -82,13 +84,14 @@ ActiveRecord::Schema.define(version: 2018_08_09_121452) do
     t.string "current_sign_in_ip"
     t.string "last_sign_in_ip"
     t.string "provider"
-    t.string "uid"
-    t.string "username"
     t.boolean "admin", default: false
+    t.string "password_digest"
     t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["id"], name: "idx_id"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
   add_foreign_key "comments", "microposts"
+  add_foreign_key "comments", "users", name: "fk_id"
   add_foreign_key "microposts", "users"
 end
