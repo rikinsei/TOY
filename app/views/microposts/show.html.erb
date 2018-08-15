@@ -1,6 +1,6 @@
-<div id="micropost" data-id="<%= @micropost.id %>">
-
-<p id="notice"><%= notice %></p>
+<div id="micropost" data-id="<%= @micropost.id %>" data-user="<%= @micropost.user_id %>">
+ <div id="user" data-id="<%= current_user.id %>">
+   <p id="notice"><%= notice %></p>
 
 <% if @micropost.image.attached? %>
 <!-- @post.image.present? will always return true, use attached? to check presence -->
@@ -40,6 +40,7 @@
     <%= link_to 'Edit', edit_micropost_path(@micropost) %>
   <% end %>
   <%= link_to 'Back', microposts_path %>
+  </div>
 </div>
 
 <script>
@@ -50,7 +51,9 @@ $(function() {
       var li = $('<li>')
       li.text(`name: ${comment.name} comment: ${comment.comment}`)
       // li.text('name: ' + comment.name + 'comment: ' + comment.comment)
-      li.append(`<a href='/comments/${comment.id}?micropost_id=${comment.micropost_id}' data-method="delete">Delete</a>`)
+      if ($('#micropost').data('user') == $('#user').data('id')) {
+        li.append(`<a href='/comments/${comment.id}?micropost_id=${comment.micropost_id}' data-method="delete">Delete</a>`)
+      }
       $('#comments').append(li)
     })
   })
