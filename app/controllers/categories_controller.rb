@@ -41,7 +41,7 @@ class CategoriesController < ApplicationController
   def update
     respond_to do |format|
       if @category.update(category_params)
-        format.html { redirect_to @category, notice: t('updated', name: 'Category')  }
+        format.html { redirect_to @category, notice: t('updated', name: 'Category') }
         format.json { render :show, status: :ok, location: @category }
       else
         format.html { render :edit }

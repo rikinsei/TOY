@@ -8,12 +8,17 @@ end
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.0'
 # Use sqlite3 as the database for Active Record
-# gem 'sqlite3'
+
+gem 'bcrypt'
+gem 'bootstrap-sass'
+gem 'bootstrap-will_paginate'
+gem 'sass-rails', '~> 5.0'
+
 gem 'mysql2'
 # gem 'jquery-rails'
+gem 'counter_culture', '~> 1.8'
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
-gem 'counter_culture', '~> 1.8'
 # Use Puma as the app server
 gem 'puma', '~> 3.7'
 # Use SCSS for stylesheets
@@ -48,9 +53,9 @@ gem 'jquery-ui-rails'
 
 group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
-  gem 'pry-rails'
   gem 'pry-byebug'
   gem 'pry-doc'
+  gem 'pry-rails'
 
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '~> 2.13'

@@ -9,6 +9,7 @@
   <strong>Comment:</strong>
   <%= @comment.comment %>
 </p>
-
+ <% if user_signed_in? && @comment.user_id == current_user.id %>
 <%= link_to 'Edit', edit_comment_path(@comment) %> |
+<% end %>
 <%= link_to 'Back', comments_path %>
