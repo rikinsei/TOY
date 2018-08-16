@@ -9,16 +9,18 @@
         <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     </head>
  <body>
-    <header class="navbar navbar-fixed-top navbar-inverse"> <div class="container">
-    <%= link_to "Toy app", root_path, id: "logo" %> <nav>
-    <ul class="nav navbar-nav navbar-right"> 
+    <header class="navbar navbar-fixed-top navbar-inverse"> 
+      <div class="container">
+      <%= link_to "Toy app", root_path, id: "logo" %>
+      <nav>
+        <ul class="nav navbar-nav navbar-right"> 
         <% if user_signed_in? %>
           <li><%= link_to('Logout', destroy_user_session_path, method: :delete) %></li>
         <% else %>
           <li><%= link_to('Login', users_path)%></li>
-    <% end %>
-    </div>
-     </header>
+        <% end %>
+      </div>
+    </header>
        <div class="container">
         <%= yield %>
     </div>

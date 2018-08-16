@@ -28,6 +28,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
+        flash[:success] = "Welcome to the Micropost App!"
         format.html { redirect_to @user, notice: t('created', name: 'User') }
         format.json { render :show, status: :created, location: @user }
       else
