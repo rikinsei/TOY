@@ -9,6 +9,9 @@ end
 gem 'rails', '~> 5.2.0'
 # Use sqlite3 as the database for Active Record
 
+gem 'carrierwave', github: 'carrierwaveuploader/carrierwave'
+gem 'mini_magick'
+
 gem 'bcrypt'
 gem 'bootstrap-sass'
 gem 'bootstrap-will_paginate'

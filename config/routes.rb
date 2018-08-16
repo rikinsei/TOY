@@ -9,5 +9,6 @@ root 'static_pages#home'
     resources :comments
   end
   resources :users
+
   # http://0.0.0.0:3000/microposts/12/comments
 end
