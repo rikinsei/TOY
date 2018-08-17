@@ -16,6 +16,11 @@
   <%= @micropost.content %>
 </p>
 
+<p>
+  <strong>Date:</strong>
+  <%= @micropost.created_at %>
+</p>
+
 </p>
   <strong>Category:</strong><p>
   <%= @micropost.categories.count %> Categories</p>
@@ -28,6 +33,7 @@
   <strong>User:</strong>
   <%=@micropost.user_name %>
 </p>
+
 
 <!--<p><%= @micropost.comments.count %> Comments</p>-->
 <!-- <%= render partial: 'comments/comment', collection: @micropost.comments %>-->

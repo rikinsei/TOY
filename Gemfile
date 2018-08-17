@@ -8,15 +8,17 @@ end
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.0'
 # Use sqlite3 as the database for Active Record
-
-gem 'carrierwave', github: 'carrierwaveuploader/carrierwave'
-gem 'mini_magick'
-
-gem 'bcrypt'
+# 日時入力補助
+gem 'momentjs-rails'
+gem 'bootstrap3-datetimepicker-rails'
 gem 'bootstrap-sass'
-gem 'bootstrap-will_paginate'
-gem 'sass-rails', '~> 5.0'
+gem 'kaminari'
 
+gem "sentry-raven"
+gem 'bcrypt'
+# Use SCSS for stylesheets
+gem 'sass-rails', '~> 5.0'
+#--- DB
 gem 'mysql2'
 # gem 'jquery-rails'
 gem 'counter_culture', '~> 1.8'
@@ -24,8 +26,9 @@ gem 'jquery-rails'
 gem 'jquery-ui-rails'
 # Use Puma as the app server
 gem 'puma', '~> 3.7'
-# Use SCSS for stylesheets
-gem 'sass-rails', '~> 5.0'
+
+gem "font-awesome-rails"
+
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
@@ -44,11 +47,6 @@ gem 'jbuilder', '~> 2.5'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
-
-group :development do
-  gem 'rubocop', require: false
-end
-
 gem 'counter_culture', '~> 1.8'
 gem 'devise'
 gem 'jquery-rails'
@@ -58,7 +56,8 @@ group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
   gem 'pry-byebug'
   gem 'pry-doc'
-  gem 'pry-rails'
+  gem 'pry-rails' 
+  gem 'rubocop', require: false
 
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '~> 2.13'
@@ -75,3 +74,4 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
+
