@@ -88,7 +88,7 @@ input {
 /* sidebar */
 aside { 
     section.user_info {
-      margin-top: 20px;
+      margin-top: 30px;
     }
     section {
       padding: 10px 0; 
@@ -129,6 +129,57 @@ h1{
         $gray-lighter;
        }
     }
-
+    /*micropost*/
+.microposts { 
+    list-style: none; 
+    padding: 5px;
+    li{
+        height: 100px;
+        width: 800px;
+        padding: 5px;
+        border-top: 1px solid #e8e8e8;
+        }
+    .user { 
+        margin-top: 5em; 
+        padding-top: 0;
+        } 
+    .content {
+        display: block; 
+        word-wrap: break-word;
+        margin-left: 60px; 
+        img {
+             display: block;
+             padding: 5px 0;
+            }
+        }
+    .timestamp {
+        color: gray-light;
+        display: block;
+        margin-left: 60px;
+        } 
+    .gravatar {
+        float: left;
+        margin-right: 10px;
+        margin-top: 10px;
+        } 
+    span {
+        margin-top: 10px;
+    }
+    }
+    
+        
+aside { 
+    textarea {
+        height: 100px;
+        margin-bottom: 5px;
+          }
+        }
+    span.picture { 
+        margin-top: 10px; 
+        input {
+        border: 0; 
+        }
+    }
+       
 
     

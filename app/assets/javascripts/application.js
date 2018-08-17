@@ -15,6 +15,7 @@
 //= require_tree .
 //= require jquery
 //= require jquery_ujs
+//= require bootstrap
 //= require moment
 //= require bootstrap-datetimepicker
 var data = {'data-date-format': 'YYYY/MM/DD hh:mm' };
