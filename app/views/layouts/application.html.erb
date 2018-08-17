@@ -12,11 +12,25 @@
     <header class="navbar navbar-fixed-top navbar-inverse"> <div class="container">
     <%= link_to "Toy app", root_path, id: "logo" %> <nav>
     <ul class="nav navbar-nav navbar-right"> 
-        <% if user_signed_in? %>
-          <li><%= link_to('Logout', destroy_user_session_path, method: :delete) %></li>
+      <% if user_signed_in? %>
+       <li><%= link_to "Users", users_path %></li>
+        <li class="dropdown">
+             <a href="#" class="dropdown-toggle" data-toggle="dropdown"> 
+             Account <b class="caret"></b>
+          </a> <ul class="dropdown-menu">
+             <li><%= link_to('micropost', microposts_path)%></li>
+            <li class="divider"></li>
+            <li>
+            <li><%= link_to('comments', comments_path)%></li>
+            <li class="divider"></li>
+            <li>
+            <li><%= link_to('categories', categories_path)%></li>
+        </li>
+    </ul> 
+            <li><%= link_to('Logout', destroy_user_session_path, method: :delete) %></li>  
         <% else %>
-          <li><%= link_to('Login', users_path)%></li>
-    <% end %>
+            <li><%= link_to('Login', users_path)%></li>
+        <% end %>
     </div>
      </header>
        <div class="container">
@@ -24,6 +38,3 @@
     </div>
   </body>
 </html>
-
-
-  

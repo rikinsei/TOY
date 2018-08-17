@@ -8,6 +8,8 @@ class MicropostsController < ApplicationController
   # GET /microposts.json
   def index
     @microposts = Micropost.all
+    @microposts = Micropost.page params[:page]
+ 
   end
   # GET /microposts/1
   # GET /microposts/1.json

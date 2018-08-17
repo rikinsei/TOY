@@ -10,5 +10,5 @@ class User < ActiveRecord::Base
   has_many :comments
   validates :name, presence: true
   validates :email, format: { with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i }
+  paginates_per 5
 end
-

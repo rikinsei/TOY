@@ -29,6 +29,12 @@
     <%= form.file_field :image %>
   </div>
 
+  <div class="field">
+    <%= form.label :date %>
+    <%= form.text_field :date, :class => 'datepicker' %>
+  </div>
+
+
   <div class="actions">
     <%= form.submit %>
   </div>
